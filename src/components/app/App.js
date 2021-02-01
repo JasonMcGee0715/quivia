@@ -121,7 +121,8 @@ skipQuestion() {
         <span style={{color:"lightgreen"}}>Wrinkle Your Brain</span>
         
         
-        <p/>
+        <br/>
+        <br/>
         {this.state.questions && !this.state.gameOver && this.state.questions.map( question => 
           <div style={{width:"100%",fontSize:"xx-large"}}>
             <div dangerouslySetInnerHTML={{ __html: question.question }}></div><p/>
