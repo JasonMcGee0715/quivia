@@ -20,7 +20,6 @@ class App extends Component {
         score: 0
     };
   }
-
   
 // generate a random number in the required range (min-max)
 getRandomInt = (min, max) => {
@@ -45,7 +44,6 @@ getRandomInt = (min, max) => {
   }
 
   getQuestions = () => {
- 
     let url = "https://opentdb.com/api.php?amount=1&type=multiple";
     fetch(url)
     .then(res=>res.json())
@@ -58,8 +56,6 @@ getRandomInt = (min, max) => {
         questions: data.results,
         answers: answerArray
       })
-   
-    
     })
   }
 
@@ -116,54 +112,51 @@ skipQuestion() {
   render() {
     return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} style={{width:"200px"}} alt="" />
-        <span style={{color:"lightgreen"}}>Wrinkle Your Brain</span>
+      <header>
+        <img src={logo} alt="" />
+        <span>Wrinkle Your Brain</span>
         
-        
-        <br/>
-        <br/>
         {this.state.questions && !this.state.gameOver && this.state.questions.map( question => 
-          <div style={{width:"100%",fontSize:"xx-large"}}>
+          <div>
             <div dangerouslySetInnerHTML={{ __html: question.question }}></div><p/>
-            <div style={{fontSize:"large",textAlign:"center",display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center",alignContent:"center"}}>
+            <div>
             {this.state.answers.map(answer => 
-              <div style={{color:"#463f57",padding:"20px",width:"20%",margin:"20px",backgroundColor:"coral",borderRadius:"15px",fontWeight:"550"}} onClick={()=>this.checkAnswer(answer)} dangerouslySetInnerHTML={{ __html: answer }}>
+              <div onClick={()=>this.checkAnswer(answer)} dangerouslySetInnerHTML={{ __html: answer }}>
               </div>
               )}
             {this.state.skipsLeft>0 &&
-            <div style={{padding:"1px",color:"#463f57",width:"20%",margin:"20px",backgroundColor:"coral",borderRadius:"15px"}} onClick={()=>this.skipQuestion()}>
-              <img src={skipButton} style={{height:"56px"}} alt="" />
+            <div onClick={()=>this.skipQuestion()}>
+              <img src={skipButton} alt="" />
             </div>
             }
             </div>
                       </div>
           )}
-          <div style={{fontSize:"xxx-large"}}>
+          <div>
             {this.state.score}
           </div>
-          
  
-          <div style={{textAlign:"center",display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center",alignContent:"center"}}>
+          <div>
           {this.state.wrongAnswers && this.state.wrongAnswers.map(newWrong => 
           <div>
-          <img src={wrongMark} alt="" style={{width:"100px",margin:"10px",border:"1px solid grey",borderRadius:"15px"}} />
+          <img src={wrongMark} alt="" />
            </div>
           )}
           </div>
 
           {this.state.gameOver && 
           <div>
-            <HighScore score={this.state.score} />
+            <HighScore score={this.state.score}/>
           </div>
           }
 
           <div>
-            <a href="/leaders" style={{color:"white"}}>LeaderBoard</a>
-            <a href="/contributors" style={{color:"white",marginLeft:"20px"}}>Contributors</a>
+            <a href="/leaders">LeaderBoard</a>
+            <a href="/contributors">Contributors</a>
           </div>
-          <div style={{marginTop:"10px",fontSize:"small",color:'lightgreen',textAlign:"center"}}>
-            Data Provided By: <a href="https://opentdb.com/api_config.php" style={{color:"lightgreen"}}>
+
+          <div>
+            Data Provided By: <a href="https://opentdb.com/api_config.php">
             Open Trivia DB
             </a>
           </div>

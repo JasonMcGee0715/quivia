@@ -30,7 +30,7 @@ class HighScore extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.code == "200") {
+        if (data.code === "200") {
          this.setState({
              success: true
          })
